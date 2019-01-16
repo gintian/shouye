@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="card-header">交换量占比分析</div>
+    <div class="card-header">全网业务量变化态势</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ExchangeVolume",
+  name: "BusinessStatistics",
   props: {
     data: Object
   }

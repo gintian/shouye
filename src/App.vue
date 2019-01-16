@@ -1,18 +1,30 @@
 <template>
-  <div class="layout">
-    <div class="layout-header"></div>
-    <div class="layout-content">
-      <div class="layout-content-aside-left">
-        <api-service></api-service>
-        <trend-prediction></trend-prediction>
+  <div class="wrapper">
+    <div class="header"></div>
+    <div class="content">
+      <div class="content-aside">
+        <div class="content-index-top">
+          <api-service :data="apiService"></api-service>
+        </div>
+        <div class="content-index-bottom">
+          <trend-prediction :data="trendPrediction"></trend-prediction>
+        </div>
       </div>
-      <div class="layout-content-main">
-        <business-analysis></business-analysis>
-        <business-statistics></business-statistics>
+      <div class="content-session">
+        <div class="content-index-top">
+          <business-analysis :data="businessAnalysis"></business-analysis>
+        </div>
+        <div class="content-index-bottom">
+          <business-statistics :data="businessStatistics"></business-statistics>
+        </div>
       </div>
-      <div class="layout-content-aside-right">
-        <data-exchange></data-exchange>
-        <exchange-volume></exchange-volume>
+      <div class="content-aside">
+        <div class="content-index-top">
+          <data-exchange :data="dataExchange"></data-exchange>
+        </div>
+        <div class="content-index-bottom">
+          <exchange-volume :data="exchangeVolume"></exchange-volume>
+        </div>
       </div>
     </div>
   </div>
@@ -20,56 +32,72 @@
 
 <script>
 import ApiService from "./components/api-service";
-import BusinessAnalysis from "./components/business-volume-analysis";
-import DataExchange from "./components/data-exchange";
 import TrendPrediction from "./components/trend-prediction";
+import BusinessAnalysis from "./components/business-analysis";
+import BusinessStatistics from "./components/business-statistics";
+import DataExchange from "./components/data-exchange";
 import ExchangeVolume from "./components/exchange-volume";
-import BusinessStatistics from "./components/business-volume-statistics";
 export default {
   name: "app",
   components: {
     ApiService,
+    TrendPrediction,
     BusinessAnalysis,
     BusinessStatistics,
     DataExchange,
-    TrendPrediction,
     ExchangeVolume
+  },
+  data() {
+    return {
+      apiService: {},
+      trendPrediction: {},
+      businessAnalysis: {},
+      businessStatistics: {},
+      dataExchange: {},
+      exchangeVolume: {}
+    };
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.layout {
+.wrapper {
   display: flex;
   flex-direction: column;
   flex: 1;
   flex-basis: auto;
   height: 100%;
   background: url("./assets/background.jpg") no-repeat center;
+  min-width: 1600px;
 
-  &-header {
+  .header {
     height: 72px;
     background: url("./assets/logo_03.png") no-repeat center;
   }
 
-  &-content {
+  .content {
     display: flex;
     flex-direction: row;
     flex: 1;
     flex-basis: auto;
     padding: 24px;
-    &-aside-left {
+
+    &-aside {
       width: 25%;
     }
 
-    &-main {
+    &-session {
       flex: 1;
       flex-basis: auto;
       padding: 0 24px;
     }
 
-    &-aside-right {
-      width: 25%;
+    &-index-top {
+      height: 70%;
+    }
+
+    &-index-bottom {
+      height: 30%;
     }
   }
 }

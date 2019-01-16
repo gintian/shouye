@@ -8,7 +8,10 @@
 </template>
 <script>
 export default {
-  name: "BussinessAnalysis"
+  name: "BussinessAnalysis",
+  props: {
+    data: Object
+  }
 };
 </script>
 

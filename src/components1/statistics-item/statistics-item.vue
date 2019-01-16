@@ -1,50 +1,50 @@
 <template>
   <div class="statistics">
     <div class="statistics-img">
-      <slot name="img"></slot>
+      <img
+        src="~@/assets/serviceinterface.png"
+        alt=""
+      >
     </div>
     <div class="statistics-content">
-      <p>
-        <slot name="label"></slot>
-      </p>
+      <p>服务接口(个)</p>
       <span>
-        <slot name="number"></slot>
+        <count-to :count="276"></count-to>
       </span>
     </div>
   </div>
 </template>
 
 <script>
+import CountTo from "../count-to/count-to";
 export default {
-  name: "StatisticsItem"
+  name: "StatisticsItem",
+  components: {
+    CountTo
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .statistics {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  flex-basis: auto;
+  display: inline-block;
 
   &-img {
     display: inline-block;
-    vertical-align: middle;
-    width: 60px;
-    height: 60px;
     padding: 12px;
+    vertical-align: middle;
 
     img {
       display: block;
-      width: 35px;
-      height: 35px;
+      width: 36px;
+      height: 36px;
     }
   }
 
   &-content {
-    flex: 1;
-    flex-basis: auto;
+    display: inline-block;
     vertical-align: middle;
+    width: 100px;
     overflow: hidden;
 
     p {
