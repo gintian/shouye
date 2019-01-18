@@ -62,10 +62,6 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  flex-basis: auto;
   height: 100%;
   background: url("./assets/background2.jpg") no-repeat center;
   min-width: 1600px;
@@ -76,19 +72,21 @@ export default {
   }
 
   .content {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-    flex-basis: auto;
+    position: absolute;
+    top: 72px;
+    width: 100%;
     padding: 24px;
 
     &-aside {
+      display: inline-block;
       width: 25%;
+      vertical-align: top;
     }
 
     &-session {
-      flex: 1;
-      flex-basis: auto;
+      display: inline-block;
+      width: 50%;
+      vertical-align: top;
       padding: 0 24px;
     }
 
