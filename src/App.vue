@@ -62,6 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+  
   display: flex;
   flex-direction: column;
   flex: 1;
