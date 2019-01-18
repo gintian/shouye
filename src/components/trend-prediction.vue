@@ -25,6 +25,9 @@ export default {
           y: 24,
           y2: 24
         },
+        tooltip: {
+          trigger: "axis"
+        },
         xAxis: {
           type: "category",
           boundaryGap: false,
@@ -42,7 +45,7 @@ export default {
           splitLine: {
             show: true,
             lineStyle: {
-              color: ["rgb(3, 40, 69)"]
+              color: ["rgba(14, 137, 212, .15)"]
             }
           },
           axisTick: {
@@ -63,7 +66,7 @@ export default {
           },
           splitLine: {
             lineStyle: {
-              color: ["rgb(3, 40, 69)"]
+              color: ["rgba(14, 137, 212, .15)"]
             }
           },
           axisTick: {
@@ -72,14 +75,35 @@ export default {
         },
         series: [
           {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: [820, 932, 901, 434, 690, 630, 320],
             type: "line",
             areaStyle: {
               color: "#02c7d8",
               opacity: "0.3"
             },
-            lineStyle: {
-              color: "#02c7d8"
+            itemStyle: {
+              normal: {
+                color: "#02c7d8",
+                lineStyle: {
+                  color: "#02c7d8"
+                }
+              }
+            }
+          },
+          {
+            data: [420, 632, 301, 934, 490, 230, 720],
+            type: "line",
+            areaStyle: {
+              color: "#87d95d",
+              opacity: "0.3"
+            },
+            itemStyle: {
+              normal: {
+                color: "#87d95d",
+                lineStyle: {
+                  color: "#87d95d"
+                }
+              }
             }
           }
         ]
@@ -90,6 +114,9 @@ export default {
     this.$nextTick(() => {
       this.draw();
     });
+    window.onresize = function() {
+      console.log(11);
+    };
   }
 };
 </script>

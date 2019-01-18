@@ -92,14 +92,25 @@ export default {
           trigger: "axis"
         },
         legend: {
-          show: false,
-          data: ["邮件营销", "联盟广告"]
+          show: true,
+          data: ["流量A", "流量B"],
+          top: -5,
+          right: 24,
+          icon: "rect",
+          itemWidth: 12,
+          itemHeight: 12,
+          borderRadius: 4,
+          textStyle: {
+            color: "#fff"
+          },
+          inactiveColor: "#fff"
         },
+        color: ["#02c7d8", "#9c13ab"],
         grid: {
-          top: "3%",
-          left: "3%",
-          right: "4%",
-          bottom: "3%",
+          top: 24,
+          left: 24,
+          right: 24,
+          bottom: 24,
           containLabel: true
         },
         xAxis: {
@@ -119,7 +130,7 @@ export default {
           splitLine: {
             show: true,
             lineStyle: {
-              color: ["rgb(3, 40, 69)"]
+              color: ["rgba(14, 137, 212, .15)"]
             }
           },
           axisTick: {
@@ -140,7 +151,7 @@ export default {
           },
           splitLine: {
             lineStyle: {
-              color: ["rgb(3, 40, 69)"]
+              color: ["rgba(14, 137, 212, .15)"]
             }
           },
           axisTick: {
@@ -149,21 +160,31 @@ export default {
         },
         series: [
           {
-            name: "邮件营销",
+            name: "流量A",
             type: "line",
-            stack: "总量",
-            data: [120, 132, 101, 134, 90, 230, 210],
-            lineStyle: {
-              color: "#02c7d8"
+            data: [120, 200, 300, 400, 500, 550, 600],
+            smooth: true,
+            itemStyle: {
+              normal: {
+                color: "#02c7d8",
+                lineStyle: {
+                  color: "#02c7d8"
+                }
+              }
             }
           },
           {
-            name: "联盟广告",
+            name: "流量B",
             type: "line",
-            stack: "总量",
-            data: [220, 182, 191, 234, 290, 330, 310],
-            lineStyle: {
-              color: "#9c13ab"
+            data: [600, 500, 250, 300, 290, 200, 100],
+            smooth: true,
+            itemStyle: {
+              normal: {
+                color: "#9c13ab",
+                lineStyle: {
+                  color: "#9c13ab"
+                }
+              }
             }
           }
         ]
@@ -181,7 +202,7 @@ export default {
         },
         legend: {
           show: false,
-          data: ["利润", "支出", "收入"]
+          data: ["流出", "流入"]
         },
         grid: {
           top: "3%",
@@ -205,7 +226,7 @@ export default {
             },
             splitLine: {
               lineStyle: {
-                color: ["rgb(14, 137, 212)"]
+                color: ["rgba(14, 137, 212, .15)"]
               }
             },
             axisTick: {
@@ -231,42 +252,66 @@ export default {
             splitLine: {
               show: true,
               lineStyle: {
-                color: ["rgb(14, 137, 212)"]
+                color: ["rgba(14, 137, 212, .15)"]
               }
             }
           }
         ],
         series: [
           {
-            name: "利润",
-            type: "bar",
-            label: {
-              normal: {
-                show: true,
-                position: "inside"
-              }
-            },
-            data: [200, 170, 240, 244, 200, 220, 210]
-          },
-          {
-            name: "收入",
-            type: "bar",
-            stack: "总量",
-            label: {
-              normal: {
-                show: true
-              }
-            },
-            data: [320, 302, 341, 374, 390, 450, 420]
-          },
-          {
-            name: "支出",
+            name: "流入",
             type: "bar",
             stack: "总量",
             label: {
               normal: {
                 show: true,
-                position: "left"
+                position: "right",
+                color: "#fff"
+              }
+            },
+            barWidth: "40%",
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                  {
+                    offset: 0,
+                    color: "#11A4FC"
+                  },
+                  {
+                    offset: 1,
+                    color: "#79F9F9"
+                  }
+                ]),
+                barBorderRadius: [0, 8, 8, 0]
+              }
+            },
+            data: [120, 132, 101, 134, 190, 230, 210]
+          },
+          {
+            name: "流出",
+            type: "bar",
+            stack: "总量",
+            barWidth: 16,
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                  {
+                    offset: 0,
+                    color: "#f7f352"
+                  },
+                  {
+                    offset: 1,
+                    color: "#f8b528"
+                  }
+                ]),
+                barBorderRadius: [8, 0, 0, 8]
+              }
+            },
+            label: {
+              normal: {
+                show: true,
+                position: "left",
+                color: "#fff"
               }
             },
             data: [-120, -132, -101, -134, -190, -230, -210]

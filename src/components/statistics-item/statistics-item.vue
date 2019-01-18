@@ -46,6 +46,8 @@ export default {
     flex-basis: auto;
     vertical-align: middle;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     p {
       font-size: 14px;

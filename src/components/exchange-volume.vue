@@ -27,7 +27,7 @@ export default {
         },
         legend: {
           orient: "vertical",
-          top: "10%",
+          top: "20%",
           right: "10%",
           itemWidth: 14,
           data: ["公安局", "工商局", "电信公司", "环保局", "其他单位"],
@@ -35,11 +35,12 @@ export default {
             color: "#fff"
           }
         },
+        color: ["#eec93c", "#ca3cea", "#199ed9", "#19b6bb", "#e52362"],
         series: [
           {
             name: "交换量占比",
             type: "pie",
-            radius: ["50%", "70%"],
+            radius: ["42%", "70%"],
             center: ["30%", "50%"],
             avoidLabelOverlap: false,
             label: {
@@ -66,10 +67,33 @@ export default {
               { value: 310, name: "工商局" },
               { value: 234, name: "电信公司" },
               { value: 135, name: "环保局" },
-              { value: 1548, name: "其他单位" }
+              { value: 548, name: "其他单位" }
             ]
           }
         ]
+      });
+      var index = 0; //默认选中高亮模块索引
+      myChart.dispatchAction({
+        type: "highlight",
+        seriesIndex: 0,
+        dataIndex: 0
+      });
+      myChart.on("mouseover", function(e) {
+        if (e.dataIndex != index) {
+          myChart.dispatchAction({
+            type: "downplay",
+            seriesIndex: 0,
+            dataIndex: index
+          });
+        }
+      });
+      myChart.on("mouseout", function(e) {
+        index = e.dataIndex;
+        myChart.dispatchAction({
+          type: "highlight",
+          seriesIndex: 0,
+          dataIndex: e.dataIndex
+        });
       });
     }
   },

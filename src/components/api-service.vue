@@ -73,6 +73,12 @@ export default {
       let myChart = echarts.init(this.$refs.ec_1);
       myChart.setOption({
         title: { show: false },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
         grid: {
           y: 24,
           y2: 24
@@ -107,8 +113,8 @@ export default {
           splitLine: {
             interval: 2,
             lineStyle: {
-              color: ["rgb(3, 40, 69)"],
-              width: 18
+              color: ["rgba(14, 137, 212, .15)"],
+              width: 2
             }
           },
           axisTick: {
@@ -117,13 +123,22 @@ export default {
         },
         series: [
           {
-            name: "销量",
+            name: "流量",
+            type: "bar",
+            barWidth: 20,
+            itemStyle: {
+              color: "#87d95d"
+            },
+            data: [5, 200, 160, 1000, 100, 260]
+          },
+          {
+            name: "流量2",
             type: "bar",
             barWidth: 20,
             itemStyle: {
               color: "#02c7d8"
             },
-            data: [5, 200, 360, 1000, 100, 260]
+            data: [25, 100, 360, 500, 60, 260]
           }
         ]
       });
@@ -163,7 +178,7 @@ export default {
           },
           splitLine: {
             lineStyle: {
-              color: ["rgb(3, 40, 69)"]
+              color: ["rgba(14, 137, 212, .15)"]
             }
           },
           axisTick: {
@@ -198,7 +213,12 @@ export default {
                 position: "insideRight"
               }
             },
-            data: [320, 302, 301, 334, 390, 330, 320]
+            data: [320, 302, 301, 334, 390, 330, 320],
+            itemStyle: {
+              normal: {
+                color: "#0982df"
+              }
+            }
           },
           {
             name: "邮件营销",
@@ -210,7 +230,12 @@ export default {
                 position: "insideRight"
               }
             },
-            data: [120, 132, 101, 134, 90, 230, 210]
+            data: [120, 132, 101, 134, 90, 230, 210],
+            itemStyle: {
+              normal: {
+                color: "#1ec0cd"
+              }
+            }
           },
           {
             name: "联盟广告",
@@ -222,7 +247,12 @@ export default {
                 position: "insideRight"
               }
             },
-            data: [220, 182, 191, 234, 290, 330, 310]
+            data: [220, 182, 191, 234, 290, 330, 310],
+            itemStyle: {
+              normal: {
+                color: "#d01af8"
+              }
+            }
           },
           {
             name: "视频广告",
@@ -234,19 +264,13 @@ export default {
                 position: "insideRight"
               }
             },
-            data: [150, 212, 201, 154, 190, 330, 410]
-          },
-          {
-            name: "搜索引擎",
-            type: "bar",
-            stack: "总量",
-            label: {
+            data: [150, 212, 201, 154, 190, 330, 410],
+            itemStyle: {
               normal: {
-                show: true,
-                position: "insideRight"
+                color: "#eb0550",
+                barBorderRadius: [0, 8, 8, 0]
               }
-            },
-            data: [820, 832, 901, 934, 1290, 1330, 1320]
+            }
           }
         ]
       });
@@ -257,6 +281,9 @@ export default {
       this.draw();
       this.draw2();
     });
+    window.onresize = function() {
+      console.log(11);
+    };
   }
 };
 </script>

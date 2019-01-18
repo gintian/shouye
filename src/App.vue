@@ -67,7 +67,7 @@ export default {
   flex: 1;
   flex-basis: auto;
   height: 100%;
-  background: url("./assets/background.jpg") no-repeat center;
+  background: url("./assets/background2.jpg") no-repeat center;
   min-width: 1600px;
 
   .header {

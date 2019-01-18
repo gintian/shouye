@@ -1,5 +1,5 @@
 <template>
-  <span>{{newCount}}</span>
+  <span class="number">{{newCount}}</span>
 </template>
 
 <script>
@@ -43,4 +43,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@font-face {
+  font-family: myFont;
+  src: url("~@/styles/font/font.TTF");
+}
+.number {
+  font-family: "myFont";
+}
 </style>

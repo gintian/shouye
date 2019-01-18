@@ -72,10 +72,14 @@ echarts.registerMap("江苏", jiangsu);
 var geoCoordMap = {};
 var rawData = [];
 
+function getRandom(params) {
+  return Math.ceil(Math.random() * 200);
+}
+
 jiangsu.features.forEach(item => {
   if (item.properties) {
     geoCoordMap[item.properties.name] = item.properties.cp;
-    rawData.push([item.properties.name, 20, 30, 40]);
+    rawData.push([item.properties.name, getRandom(), getRandom(), getRandom(), getRandom(), getRandom()]);
   }
 });
 export default {
@@ -113,7 +117,7 @@ export default {
         geo: {
           map: "江苏",
           roam: true,
-          zoom: 1.155, // 地图初始大小
+          zoom: 1.4, // 地图初始大小
           label: {
             emphasis: {
               show: false,
@@ -123,11 +127,11 @@ export default {
           // 地区块儿颜色
           itemStyle: {
             normal: {
-              areaColor: "#55C3FC",
+              areaColor: "rgba(14, 137, 212, .15)",
               borderColor: "#fff"
             },
             emphasis: {
-              areaColor: "#21AEF8"
+              areaColor: "#185475"
             }
           }
         },
@@ -147,7 +151,13 @@ export default {
           var coord = myChart.convertToPixel("geo", geoCoord);
           idx += "";
 
-          var inflationData = [dataItem[1], dataItem[2], dataItem[3]];
+          var inflationData = [
+            dataItem[1],
+            dataItem[2],
+            dataItem[3],
+            dataItem[4],
+            dataItem[5]
+          ];
 
           option.xAxis.push({
             id: idx,
@@ -155,7 +165,7 @@ export default {
             type: "category",
             name: dataItem[0],
             nameLocation: "middle",
-            nameGap: 3,
+            nameGap: 5,
             splitLine: {
               show: false
             },
@@ -168,10 +178,10 @@ export default {
             axisLine: {
               onZero: false,
               lineStyle: {
-                color: "#666"
+                color: "#f3f3f3"
               }
             },
-            data: ["数据A", "数据B", "数据C"],
+            data: ["数据A", "数据B", "数据C", "数据D", "数据E"],
             z: 100
           });
           option.yAxis.push({
@@ -216,16 +226,20 @@ export default {
               normal: {
                 color: function(params) {
                   // 柱状图每根柱子颜色
-                  var colorList = ["#F75D5D", "#59ED4F", "#4C91E7"];
+                  var colorList = [
+                    "#F75D5D",
+                    "#59ED4F",
+                    "#4C91E7",
+                    "#0982df",
+                    "#1ec0cd"
+                  ];
                   return colorList[params.dataIndex];
                 }
               }
             }
           });
         });
-        console.time("a");
         myChart.setOption(option);
-        console.timeEnd("a");
       }
 
       setTimeout(renderEachCity, 0);
