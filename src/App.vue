@@ -1,102 +1,14 @@
 <template>
-  <div class="wrapper">
-    <div class="header"></div>
-    <div class="content">
-      <div class="content-aside">
-        <div class="content-index-top">
-          <api-service :data="apiService"></api-service>
-        </div>
-        <div class="content-index-bottom">
-          <trend-prediction :data="trendPrediction"></trend-prediction>
-        </div>
-      </div>
-      <div class="content-session">
-        <div class="content-index-top">
-          <business-analysis :data="businessAnalysis"></business-analysis>
-        </div>
-        <div class="content-index-bottom">
-          <business-statistics :data="businessStatistics"></business-statistics>
-        </div>
-      </div>
-      <div class="content-aside">
-        <div class="content-index-top">
-          <data-exchange :data="dataExchange"></data-exchange>
-        </div>
-        <div class="content-index-bottom">
-          <exchange-volume :data="exchangeVolume"></exchange-volume>
-        </div>
-      </div>
-    </div>
-  </div>
+  <index-page></index-page>
 </template>
 
 <script>
-import ApiService from "./components/api-service";
-import TrendPrediction from "./components/trend-prediction";
-import BusinessAnalysis from "./components/business-analysis";
-import BusinessStatistics from "./components/business-statistics";
-import DataExchange from "./components/data-exchange";
-import ExchangeVolume from "./components/exchange-volume";
+import IndexPage from "./views/indexPage/main";
 export default {
   name: "app",
-  components: {
-    ApiService,
-    TrendPrediction,
-    BusinessAnalysis,
-    BusinessStatistics,
-    DataExchange,
-    ExchangeVolume
-  },
+  components: { IndexPage },
   data() {
-    return {
-      apiService: {},
-      trendPrediction: {},
-      businessAnalysis: {},
-      businessStatistics: {},
-      dataExchange: {},
-      exchangeVolume: {}
-    };
+    return {};
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.wrapper {
-  height: 100%;
-  background: url("./assets/background2.jpg") no-repeat center;
-  min-width: 1600px;
-
-  .header {
-    height: 72px;
-    background: url("./assets/logo_03.png") no-repeat center;
-  }
-
-  .content {
-    position: absolute;
-    top: 72px;
-    width: 100%;
-    padding: 24px;
-
-    &-aside {
-      display: inline-block;
-      width: 25%;
-      vertical-align: top;
-    }
-
-    &-session {
-      display: inline-block;
-      width: 50%;
-      vertical-align: top;
-      padding: 0 24px;
-    }
-
-    &-index-top {
-      height: 70%;
-    }
-
-    &-index-bottom {
-      height: 30%;
-    }
-  }
-}
-</style>
