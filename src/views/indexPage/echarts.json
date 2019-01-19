@@ -1,0 +1,30 @@
+{
+  "title": {
+    "show": false
+  },
+  "tooltip": {
+    "trigger": "axis",
+    "axisPointer": {
+      "type": "shadow"
+    }
+  },
+  "axisLabel": {
+    "textStyle": {
+      "color": "#fff"
+    }
+  },
+  "axisLine": {
+    "lineStyle": {
+      "color": "#005382",
+      "width": 2
+    }
+  },
+  "axisTick": {
+    "show": false
+  },
+  "splitLine": {
+    "lineStyle": {
+      "color": "rgba(14, 137, 212, .15)"
+    }
+  }
+}
