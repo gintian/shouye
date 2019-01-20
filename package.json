@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "echarts": "^4.2.0-rc.2",
+    "echarts-gl": "^1.1.1",
     "vue": "^2.5.21"
   },
   "devDependencies": {

@@ -1,43 +1,40 @@
 <template>
   <div class="components-item">
-    <div class="components-item-header">API服务</div>
+    <div class="components-item-header">数据交换</div>
     <div class="components-item-body">
       <!-- 数据 -->
       <div class="components-item-body-data">
         <div class="data">
           <div class="data-icon">
-            <img
-              src="../../../assets/database.png"
-              alt=""
-            >
+            <img src="../../../assets/database.png" alt>
           </div>
           <div class="data-content">
             <div class="data-content-title">数据库(万条)</div>
-            <div class="data-content-number">3.15</div>
+            <div class="data-content-number">
+              <count-to :count="3.16"></count-to>
+            </div>
           </div>
         </div>
         <div class="data">
           <div class="data-icon">
-            <img
-              src="../../../assets/file.png"
-              alt=""
-            >
+            <img src="../../../assets/file.png" alt>
           </div>
           <div class="data-content">
             <div class="data-content-title">文件(GB)</div>
-            <div class="data-content-number">54.3</div>
+            <div class="data-content-number">
+              <count-to :count="245"></count-to>
+            </div>
           </div>
         </div>
         <div class="data">
           <div class="data-icon">
-            <img
-              src="../../../assets/task.png"
-              alt=""
-            >
+            <img src="../../../assets/task.png" alt>
           </div>
           <div class="data-content">
             <div class="data-content-title">任务数(次)</div>
-            <div class="data-content-number">168</div>
+            <div class="data-content-number">
+              <count-to :count="245"></count-to>
+            </div>
           </div>
         </div>
       </div>
@@ -45,18 +42,12 @@
         <!-- 图表1 -->
         <div class="components-item-body-content-echart">
           <div class="components-item-body-content-echart-header">流量监控</div>
-          <div
-            class="components-item-body-content-echart-content"
-            ref="echart1"
-          ></div>
+          <div class="components-item-body-content-echart-content" ref="echart1"></div>
         </div>
         <!-- 图表2 -->
         <div class="components-item-body-content-echart">
           <div class="components-item-body-content-echart-header">流量监控</div>
-          <div
-            class="components-item-body-content-echart-content"
-            ref="echart2"
-          ></div>
+          <div class="components-item-body-content-echart-content" ref="echart2"></div>
         </div>
       </div>
     </div>
@@ -72,7 +63,10 @@ import {
   axisTick,
   splitLine
 } from "../echarts.json";
+import CountTo from "@/components/count-to/count-to.vue";
 export default {
+  name: "DataExchange",
+  components: { CountTo },
   data() {
     return {
       xData1: ["1", "2", "3", "4", "5", "6"],
@@ -88,14 +82,14 @@ export default {
     draw1() {
       if (!this.myChart1) {
         const myChart = this.$echarts.init(this.$refs.echart1);
-        this.myChart1 = myChart;
+        this.myChart1 = window.DataExchange_myChart1 = myChart;
       }
       this.myChart1.setOption({
         tooltip: tooltip,
         legend: {
           show: true,
           data: ["流量A", "流量B"],
-          top: -5,
+          top: -3,
           right: 24,
           icon: "rect",
           itemWidth: 12,
@@ -167,7 +161,7 @@ export default {
     draw2() {
       if (!this.myChart2) {
         const myChart = this.$echarts.init(this.$refs.echart2);
-        this.myChart2 = myChart;
+        this.myChart2 = window.DataExchange_myChart2 = myChart;
       }
       this.myChart2.setOption({
         tooltip: tooltip,

@@ -1,10 +1,7 @@
 <template>
   <div class="components-item">
     <div class="components-item-header">交换量占比分析</div>
-    <div
-      class="components-item-body"
-      ref="echart"
-    ></div>
+    <div class="components-item-body" ref="echart"></div>
   </div>
 </template>
 
@@ -32,7 +29,7 @@ export default {
     draw() {
       if (!this.myChart) {
         const myChart = this.$echarts.init(this.$refs.echart);
-        this.myChart = myChart;
+        this.myChart = window.ExchangeVolume_myChart = myChart;
       }
       this.myChart.setOption({
         tooltip: {
@@ -41,7 +38,7 @@ export default {
         },
         legend: {
           orient: "vertical",
-          top: "30%",
+          top: "20%",
           right: "10%",
           itemWidth: 14,
           data: ["公安局", "工商局", "电信公司", "环保局", "其他单位"],
@@ -55,7 +52,7 @@ export default {
             name: "交换量占比",
             type: "pie",
             radius: ["52%", "80%"],
-            center: ["30%", "60%"],
+            center: ["30%", "53%"],
             avoidLabelOverlap: false,
             label: {
               normal: {
@@ -92,7 +89,7 @@ export default {
         seriesIndex: 0,
         dataIndex: 0
       });
-      this.myChart.on("mouseover", function(e) {
+      this.myChart.on("mouseover", e => {
         if (e.dataIndex != index) {
           this.myChart.dispatchAction({
             type: "downplay",
@@ -101,7 +98,7 @@ export default {
           });
         }
       });
-      this.myChart.on("mouseout", function(e) {
+      this.myChart.on("mouseout", e => {
         index = e.dataIndex;
         this.myChart.dispatchAction({
           type: "highlight",

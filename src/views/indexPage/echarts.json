@@ -23,6 +23,7 @@
     "show": false
   },
   "splitLine": {
+    "show": true,
     "lineStyle": {
       "color": "rgba(14, 137, 212, .15)"
     }

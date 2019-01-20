@@ -6,26 +6,24 @@
       <div class="components-item-body-data">
         <div class="data">
           <div class="data-icon">
-            <img
-              src="../../../assets/apiservice.png"
-              alt=""
-            >
+            <img src="../../../assets/apiservice.png" alt>
           </div>
           <div class="data-content">
             <div class="data-content-title">API服务(万次)</div>
-            <div class="data-content-number">3.15</div>
+            <div class="data-content-number">
+              <count-to :count="3.15"></count-to>
+            </div>
           </div>
         </div>
         <div class="data">
           <div class="data-icon">
-            <img
-              src="../../../assets/serviceinterface.png"
-              alt=""
-            >
+            <img src="../../../assets/serviceinterface.png" alt>
           </div>
           <div class="data-content">
             <div class="data-content-title">服务接口(个)</div>
-            <div class="data-content-number">279</div>
+            <div class="data-content-number">
+              <count-to :count="245"></count-to>
+            </div>
           </div>
         </div>
       </div>
@@ -33,18 +31,12 @@
         <!-- 图表1 -->
         <div class="components-item-body-content-echart">
           <div class="components-item-body-content-echart-header">流量监控</div>
-          <div
-            class="components-item-body-content-echart-content"
-            ref="echart1"
-          ></div>
+          <div class="components-item-body-content-echart-content" ref="echart1"></div>
         </div>
         <!-- 图表2 -->
         <div class="components-item-body-content-echart">
           <div class="components-item-body-content-echart-header">流量监控</div>
-          <div
-            class="components-item-body-content-echart-content"
-            ref="echart2"
-          ></div>
+          <div class="components-item-body-content-echart-content" ref="echart2"></div>
         </div>
       </div>
     </div>
@@ -60,7 +52,9 @@ import {
   axisTick,
   splitLine
 } from "../echarts.json";
+import CountTo from "@/components/count-to/count-to.vue";
 export default {
+  components: { CountTo },
   data() {
     return {
       xData1: ["1", "2", "3", "4", "5", "6"],
@@ -80,7 +74,7 @@ export default {
     draw1() {
       if (!this.myChart1) {
         const myChart = this.$echarts.init(this.$refs.echart1);
-        this.myChart1 = myChart;
+        this.myChart1 = window.ApiService_myChart1 = myChart;
       }
       const option = {
         title,
@@ -122,7 +116,7 @@ export default {
     draw2() {
       if (!this.myChart2) {
         const myChart = this.$echarts.init(this.$refs.echart2);
-        this.myChart2 = myChart;
+        this.myChart2 = window.ApiService_myChart2 = myChart;
       }
       let color = ["#0982df", "#1ec0cd", "#d01af8", "#eb0550"];
       // 0-100,100-300,300-600,600+
@@ -204,10 +198,14 @@ export default {
             data: this.yData2Formatter[1],
             itemStyle: {
               normal: {
-                /* color: params => {
+                color: params => {
                   let item = this.yData2[params.dataIndex];
-                  
-                } */
+                  if (item <= 600 && item > 300) {
+                    return color[0];
+                  } else {
+                    return color[1];
+                  }
+                }
               }
             }
           },
@@ -218,14 +216,16 @@ export default {
             data: this.yData2Formatter[2],
             itemStyle: {
               normal: {
-                /*  color: params => {
+                color: params => {
                   let item = this.yData2[params.dataIndex];
-                  if (item > 300) {
+                  if (item > 600) {
                     return color[2];
+                  } else if (item <= 600 && item > 300) {
+                    return color[1];
                   } else {
-                    return "transparent";
+                    return color[0];
                   }
-                } */
+                }
               }
             }
           },
@@ -243,18 +243,18 @@ export default {
             itemStyle: {
               normal: {
                 barBorderRadius: [0, 8, 8, 0],
-                /* color: params => {
+                color: params => {
                   let item = this.yData2[params.dataIndex];
-                  if (item <= 100) {
-                    return color[0];
-                  } else if (item <= 300) {
-                    return color[1];
-                  } else if (item <= 600) {
-                    return color[2];
-                  } else {
+                  if (item > 600) {
                     return color[3];
+                  } else if (item <= 600 && item > 300) {
+                    return color[2];
+                  } else if (item <= 300 && item > 100) {
+                    return color[1];
+                  } else {
+                    return color[0];
                   }
-                } */
+                }
               }
             },
             data: this.yData2Formatter[3]
@@ -279,8 +279,9 @@ export default {
         [r(), r(), r(), r(), r(), r()],
         [r(), r(), r(), r(), r(), r()]
       ];
+      this.yData2 = [r(), r(), r(), r(), r(), r(), r()];
       this.draw1();
-      // this.draw2();
+      this.draw2();
     }, 5000);
   }
 };

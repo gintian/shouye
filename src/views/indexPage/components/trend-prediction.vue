@@ -1,10 +1,7 @@
 <template>
   <div class="components-item">
     <div class="components-item-header">24小时趋势预测</div>
-    <div
-      class="components-item-body"
-      ref="echart"
-    ></div>
+    <div class="components-item-body" ref="echart"></div>
   </div>
 </template>
 
@@ -32,14 +29,29 @@ export default {
     draw() {
       if (!this.myChart) {
         const myChart = this.$echarts.init(this.$refs.echart);
-        this.myChart = myChart;
+        this.myChart = window.TrendPrediction_myChart = myChart;
       }
       this.myChart.setOption({
         grid: {
-          y: 24,
-          y2: 24
+          y: 32,
+          y2: 24,
+          right: 24
         },
         tooltip: tooltip,
+        legend: {
+          show: true,
+          data: ["A", "B"],
+          top: 4,
+          right: 20,
+          icon: "rect",
+          itemWidth: 12,
+          itemHeight: 12,
+          borderRadius: 4,
+          textStyle: {
+            color: "#fff"
+          },
+          inactiveColor: "#fff"
+        },
         xAxis: {
           type: "category",
           boundaryGap: false,
@@ -58,6 +70,7 @@ export default {
         },
         series: [
           {
+            name: "A",
             data: this.yData[0],
             type: "line",
             showSymbol: false,
@@ -76,6 +89,7 @@ export default {
             }
           },
           {
+            name: "B",
             data: this.yData[1],
             type: "line",
             showSymbol: false,

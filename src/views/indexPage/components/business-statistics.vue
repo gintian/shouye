@@ -1,10 +1,7 @@
 <template>
   <div class="components-item">
     <div class="components-item-header">全网业务量变化态势</div>
-    <div
-      class="components-item-body"
-      ref="echart"
-    ></div>
+    <div class="components-item-body" ref="echart"></div>
   </div>
 </template>
 
@@ -746,7 +743,7 @@ export default {
       });
       if (!this.myChart) {
         const myChart = this.$echarts.init(this.$refs.echart);
-        this.myChart = myChart;
+        this.myChart = window.BusinessStatistics_myChart = myChart;
       }
       this.myChart.setOption({
         baseOption: {
