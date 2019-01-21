@@ -5,50 +5,65 @@
       <div class="components-item-body-data">
         <div class="data">
           <div class="data-icon">
-            <img src="../../../assets/accessunit.png" alt>
+            <img
+              src="../../../assets/accessunit.png"
+              alt
+            >
           </div>
           <div class="data-content">
             <div class="data-content-title">接入单位(个)</div>
             <div class="data-content-number">
-              <count-to :count="245"></count-to>
+              <count-to :count="data1"></count-to>
             </div>
           </div>
         </div>
         <div class="data">
           <div class="data-icon">
-            <img src="../../../assets/dataexchange.png" alt>
+            <img
+              src="../../../assets/dataexchange.png"
+              alt
+            >
           </div>
           <div class="data-content">
             <div class="data-content-title">数据交换量(万条)</div>
             <div class="data-content-number">
-              <count-to :count="245"></count-to>
+              <count-to :count="data2"></count-to>
             </div>
           </div>
         </div>
         <div class="data">
           <div class="data-icon">
-            <img src="../../../assets/fileexchange.png" alt>
+            <img
+              src="../../../assets/fileexchange.png"
+              alt
+            >
           </div>
           <div class="data-content">
             <div class="data-content-title">文件交换量(GB)</div>
             <div class="data-content-number">
-              <count-to :count="245"></count-to>
+              <count-to :count="data3"></count-to>
             </div>
           </div>
         </div>
         <div class="data">
           <div class="data-icon">
-            <img src="../../../assets/servicetimes.png" alt>
+            <img
+              src="../../../assets/servicetimes.png"
+              alt
+            >
           </div>
           <div class="data-content">
             <div class="data-content-title">提供服务次数(万次)</div>
             <div class="data-content-number">
-              <count-to :count="2245"></count-to>
+              <count-to :count="data4"></count-to>
             </div>
           </div>
         </div>
       </div>
-      <div class="components-item-body-content" ref="echart1"></div>
+      <div
+        class="components-item-body-content"
+        ref="echart1"
+      ></div>
     </div>
   </div>
 </template>
@@ -63,10 +78,23 @@ export default {
     data: Object
   },
   components: { CountTo },
+  data() {
+    return {
+      data1: 240,
+      data2: 340,
+      data3: 140,
+      data4: 3140
+    };
+  },
   methods: {
     draw() {
       let geoCoordMap = {
+        // 0.055
         南京市: [118.767413, 32.041544],
+        南京市1: [118.712413, 32.041544],
+        南京市2: [118.657413, 32.041544],
+        南京市3: [118.602413, 32.041544],
+        南京市4: [118.547413, 32.041544],
         无锡市: [120.301663, 31.574729],
         徐州市: [117.184811, 34.261792],
         常州市: [119.946973, 31.772752],
@@ -137,18 +165,22 @@ export default {
           map: "江苏",
           roam: true,
           itemStyle: {
-            color: "#1d5e98",
+            // color: "#38dcff",
+            color: "#38dcff",
             opacity: 1,
             borderWidth: 0.4,
             borderColor: "#000"
           },
+          groundPlane: {
+            show: false
+          },
           label: {
             show: true,
             textStyle: {
-              color: "#fff", //地图初始化区域字体颜色
+              color: "#888", //地图初始化区域字体颜色
               fontSize: 8,
               opacity: 1,
-              backgroundColor: "rgba(0,23,11,0)"
+              backgroundColor: "transparent"
             }
           },
           emphasis: {
@@ -177,7 +209,7 @@ export default {
               intensity: 0.3
             }
           },
-          top: 0
+          top: -10
         },
         series: [
           {
@@ -195,6 +227,22 @@ export default {
             data: convertData([
               {
                 name: "南京市",
+                value: [ra(), ra(), ra()]
+              },
+              {
+                name: "南京市1",
+                value: [ra(), ra(), ra()]
+              },
+              {
+                name: "南京市2",
+                value: [ra(), ra(), ra()]
+              },
+              {
+                name: "南京市3",
+                value: [ra(), ra(), ra()]
+              },
+              {
+                name: "南京市4",
                 value: [ra(), ra(), ra()]
               },
               {
@@ -259,6 +307,13 @@ export default {
     this.$nextTick(() => {
       this.draw();
     });
+
+    setInterval(() => {
+      this.data1 = Math.ceil(Math.random() * 800);
+      this.data2 = Math.ceil(Math.random() * 800);
+      this.data3 = Math.ceil(Math.random() * 800);
+      this.data4 = Math.ceil(Math.random() * 800 + 1000);
+    }, 5000);
   }
 };
 </script>
