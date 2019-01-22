@@ -104,9 +104,24 @@ export default {
         淮安市: [119.021265, 33.597506],
         盐城市: [120.139998, 33.377631],
         扬州市: [119.421003, 32.393159],
+
         镇江市: [119.452753, 32.204402],
+        镇江市1: [119.397753, 32.204402],
+        镇江市2: [119.342753, 32.204402],
+        镇江市3: [119.287753, 32.204402],
+        镇江市4: [119.232753, 32.204402],
+
         泰州市: [119.915176, 32.484882],
-        宿迁市: [118.275162, 33.968008]
+        泰州市1: [119.860176, 32.484882],
+        泰州市2: [119.805176, 32.484882],
+        泰州市3: [119.750176, 32.484882],
+        泰州市4: [119.695176, 32.484882],
+
+        宿迁市: [118.275162, 33.968008],
+        宿迁市1: [118.220162, 33.968008],
+        宿迁市2: [118.165162, 33.968008],
+        宿迁市3: [118.110162, 33.968008],
+        宿迁市4: [118.055162, 33.968008]
       };
 
       var convertData = function(data) {
@@ -116,7 +131,8 @@ export default {
           if (geoCoord) {
             res.push({
               name: data[i].name,
-              value: geoCoord.concat(data[i].value)
+              value: geoCoord.concat(data[i].value),
+              itemStyle: data[i].itemStyle
             });
           }
         }
@@ -135,29 +151,21 @@ export default {
           show: true,
           formatter: params => {
             let data =
-              params.name +
-              "<br/>" +
-              "值A: " +
-              params.value[2] +
-              "<br/>" +
-              "值A: " +
-              params.value[3] +
-              "<br/>" +
-              "值C: " +
-              params.value[4] +
-              "<br/>";
+              params.name + "<br/>" + "值: " + params.value[2] + "<br/>";
             return data;
           }
         },
         visualMap: [
           {
             type: "continuous",
-            show: false,
+            show: true,
             seriesIndex: 0,
+            min: 0,
+            max: 800,
             text: ["bar3D"],
             calculable: true,
             inRange: {
-              color: ["#87aa66", "#eba438", "#d94d4c"]
+              color: ["yellow", "green", "red", "blue", "green"]
             }
           }
         ],
@@ -177,7 +185,7 @@ export default {
           label: {
             show: true,
             textStyle: {
-              color: "#888", //地图初始化区域字体颜色
+              color: "#003a5b", //地图初始化区域字体颜色
               fontSize: 8,
               opacity: 1,
               backgroundColor: "transparent"
@@ -227,23 +235,26 @@ export default {
             data: convertData([
               {
                 name: "南京市",
-                value: [ra(), ra(), ra()]
+                value: 50,
+                itemStyle: params => {
+                  console.log(params);
+                }
               },
               {
                 name: "南京市1",
-                value: [ra(), ra(), ra()]
+                value: 100
               },
               {
                 name: "南京市2",
-                value: [ra(), ra(), ra()]
+                value: 150
               },
               {
                 name: "南京市3",
-                value: [ra(), ra(), ra()]
+                value: 200
               },
               {
                 name: "南京市4",
-                value: [ra(), ra(), ra()]
+                value: 250
               },
               {
                 name: "无锡市",
@@ -253,45 +264,207 @@ export default {
                 name: "徐州市",
                 value: [ra(), ra(), ra()]
               },
+
               {
                 name: "常州市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "常州市1",
+                value: 685
+              },
+              {
+                name: "常州市2",
+                value: 570
+              },
+              {
+                name: "常州市3",
+                value: 455
+              },
+              {
+                name: "常州市4",
+                value: 340
               },
               {
                 name: "苏州市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "苏州市1",
+                value: 685
+              },
+              {
+                name: "苏州市2",
+                value: 570
+              },
+              {
+                name: "苏州市3",
+                value: 455
+              },
+              {
+                name: "苏州市4",
+                value: 340
               },
               {
                 name: "南通市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "南通市1",
+                value: 685
+              },
+              {
+                name: "南通市2",
+                value: 570
+              },
+              {
+                name: "南通市3",
+                value: 455
+              },
+              {
+                name: "南通市4",
+                value: 340
               },
               {
                 name: "连云港市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "连云港市1",
+                value: 685
+              },
+              {
+                name: "连云港市2",
+                value: 570
+              },
+              {
+                name: "连云港市3",
+                value: 455
+              },
+              {
+                name: "连云港市4",
+                value: 340
               },
               {
                 name: "淮安市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "淮安市1",
+                value: 685
+              },
+              {
+                name: "淮安市2",
+                value: 570
+              },
+              {
+                name: "淮安市3",
+                value: 455
+              },
+              {
+                name: "淮安市4",
+                value: 340
               },
               {
                 name: "盐城市",
-                value: [ra(), ra(), ra()]
+                value: 800
               },
               {
+                name: "盐城市1",
+                value: 685
+              },
+              {
+                name: "盐城市2",
+                value: 570
+              },
+              {
+                name: "盐城市3",
+                value: 455
+              },
+              {
+                name: "盐城市4",
+                value: 340
+              },
+
+              {
                 name: "扬州市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "扬州市1",
+                value: 685
+              },
+              {
+                name: "扬州市2",
+                value: 570
+              },
+              {
+                name: "扬州市3",
+                value: 455
+              },
+              {
+                name: "扬州市4",
+                value: 340
               },
               {
                 name: "镇江市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "镇江市1",
+                value: 685
+              },
+              {
+                name: "镇江市2",
+                value: 570
+              },
+              {
+                name: "镇江市3",
+                value: 455
+              },
+              {
+                name: "镇江市4",
+                value: 340
               },
               {
                 name: "泰州市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "泰州市1",
+                value: 685
+              },
+              {
+                name: "泰州市2",
+                value: 570
+              },
+              {
+                name: "泰州市3",
+                value: 455
+              },
+              {
+                name: "泰州市4",
+                value: 340
               },
               {
                 name: "宿迁市",
-                value: [ra(), ra(), ra()]
+                value: 800
+              },
+              {
+                name: "宿迁市1",
+                value: 685
+              },
+              {
+                name: "宿迁市2",
+                value: 570
+              },
+              {
+                name: "宿迁市3",
+                value: 455
+              },
+              {
+                name: "宿迁市4",
+                value: 340
               }
             ])
           }
@@ -301,6 +474,244 @@ export default {
         this.$refs.echart1
       ));
       echart1.setOption(option);
+
+      console.log(
+        convertData([
+          {
+            name: "南京市",
+            value: 50,
+            itemStyle: params => {
+              console.log(params);
+            }
+          },
+          {
+            name: "南京市1",
+            value: 100
+          },
+          {
+            name: "南京市2",
+            value: 150
+          },
+          {
+            name: "南京市3",
+            value: 200
+          },
+          {
+            name: "南京市4",
+            value: 250
+          },
+          {
+            name: "无锡市",
+            value: [ra(), ra(), ra()]
+          },
+          {
+            name: "徐州市",
+            value: [ra(), ra(), ra()]
+          },
+
+          {
+            name: "常州市",
+            value: 800
+          },
+          {
+            name: "常州市1",
+            value: 685
+          },
+          {
+            name: "常州市2",
+            value: 570
+          },
+          {
+            name: "常州市3",
+            value: 455
+          },
+          {
+            name: "常州市4",
+            value: 340
+          },
+          {
+            name: "苏州市",
+            value: 800
+          },
+          {
+            name: "苏州市1",
+            value: 685
+          },
+          {
+            name: "苏州市2",
+            value: 570
+          },
+          {
+            name: "苏州市3",
+            value: 455
+          },
+          {
+            name: "苏州市4",
+            value: 340
+          },
+          {
+            name: "南通市",
+            value: 800
+          },
+          {
+            name: "南通市1",
+            value: 685
+          },
+          {
+            name: "南通市2",
+            value: 570
+          },
+          {
+            name: "南通市3",
+            value: 455
+          },
+          {
+            name: "南通市4",
+            value: 340
+          },
+          {
+            name: "连云港市",
+            value: 800
+          },
+          {
+            name: "连云港市1",
+            value: 685
+          },
+          {
+            name: "连云港市2",
+            value: 570
+          },
+          {
+            name: "连云港市3",
+            value: 455
+          },
+          {
+            name: "连云港市4",
+            value: 340
+          },
+          {
+            name: "淮安市",
+            value: 800
+          },
+          {
+            name: "淮安市1",
+            value: 685
+          },
+          {
+            name: "淮安市2",
+            value: 570
+          },
+          {
+            name: "淮安市3",
+            value: 455
+          },
+          {
+            name: "淮安市4",
+            value: 340
+          },
+          {
+            name: "盐城市",
+            value: 800
+          },
+          {
+            name: "盐城市1",
+            value: 685
+          },
+          {
+            name: "盐城市2",
+            value: 570
+          },
+          {
+            name: "盐城市3",
+            value: 455
+          },
+          {
+            name: "盐城市4",
+            value: 340
+          },
+
+          {
+            name: "扬州市",
+            value: 800
+          },
+          {
+            name: "扬州市1",
+            value: 685
+          },
+          {
+            name: "扬州市2",
+            value: 570
+          },
+          {
+            name: "扬州市3",
+            value: 455
+          },
+          {
+            name: "扬州市4",
+            value: 340
+          },
+          {
+            name: "镇江市",
+            value: 800
+          },
+          {
+            name: "镇江市1",
+            value: 685
+          },
+          {
+            name: "镇江市2",
+            value: 570
+          },
+          {
+            name: "镇江市3",
+            value: 455
+          },
+          {
+            name: "镇江市4",
+            value: 340
+          },
+          {
+            name: "泰州市",
+            value: 800
+          },
+          {
+            name: "泰州市1",
+            value: 685
+          },
+          {
+            name: "泰州市2",
+            value: 570
+          },
+          {
+            name: "泰州市3",
+            value: 455
+          },
+          {
+            name: "泰州市4",
+            value: 340
+          },
+          {
+            name: "宿迁市",
+            value: 800
+          },
+          {
+            name: "宿迁市1",
+            value: 685
+          },
+          {
+            name: "宿迁市2",
+            value: 570
+          },
+          {
+            name: "宿迁市3",
+            value: 455
+          },
+          {
+            name: "宿迁市4",
+            value: 340
+          }
+        ])
+      );
     }
   },
   created() {
